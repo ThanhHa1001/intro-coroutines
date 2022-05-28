@@ -13,6 +13,7 @@ import contributors.User
  You can use 'Navigate | Test' menu action (note the shortcut) to navigate to the test.
 */
 fun List<User>.aggregate(): List<User> =
-    this.groupBy { it.login }
+    this.also { println("size: ${it.size}") }
+        .groupBy { it.login }
         .map { (user, groupListContributies) -> User(user, groupListContributies.sumOf { it.contributions }) }
         .sortedByDescending { it.contributions }
