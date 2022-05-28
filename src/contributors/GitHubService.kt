@@ -20,11 +20,22 @@ interface GitHubService {
         @Path("org") org: String
     ): Call<List<Repo>>
 
+    @GET("orgs/{org}/repos?per_page=100")
+    suspend fun getOrgReposCallSuspend(
+        @Path("org") org: String
+    ): Response<List<Repo>>
+
     @GET("repos/{owner}/{repo}/contributors?per_page=100")
     fun getRepoContributorsCall(
         @Path("owner") owner: String,
         @Path("repo") repo: String
     ): Call<List<User>>
+
+    @GET("repos/{owner}/{repo}/contributors?per_page=100")
+    suspend fun getRepoContributorsCallSuspend(
+        @Path("owner") owner: String,
+        @Path("repo") repo: String
+    ): Response<List<User>>
 }
 
 @Serializable
